@@ -21,12 +21,13 @@ namespace RComic.FileManageTools
         // # Instance Variables #
         public string path;
         public string localFilePath;
+        protected StorageFolder tempDir;
 
         // # Abstract Methods #
         public abstract void StartDecompression();
         public abstract void ObtainCompressedContents();
         public abstract void IterateThroughEntries(RarArchive ra);
-        public abstract string GenerateTempFilePath();
+        public abstract string GenerateTempFilePath(); //should no longer be necessary
 
         
         
@@ -39,11 +40,18 @@ namespace RComic.FileManageTools
             this.path = localPath;
         }
 
+        public ResourceLoader(StorageFolder sf)
+        {
+            this.tempDir = sf;
+        }
+
         /**
          * <param name="entry"></param>
          * <param name="fileType"></param>
          * <summary></summary>
          * <returns></returns>
+         * 
+         * Should no longer be necessary if the ResourceGetter functionalities are working as intended.
          */
         private string CopyEntryContentToLocalFile(Entry entry, int fileType = FILE_TYPE_RAR)
         {
@@ -63,6 +71,8 @@ namespace RComic.FileManageTools
          * <param name="entry"></param>
          * <param name="localFilePath"></param>
          * <summary></summary>
+         * 
+         * Should no longer be necessary if the ResourceGetter functionalities are working as intended.
          */
         private void CopyRarEntryContent(Entry entry, string localFilePath)
         {
@@ -75,6 +85,9 @@ namespace RComic.FileManageTools
                 }
             }
         }
+
+
+        
 
 
         

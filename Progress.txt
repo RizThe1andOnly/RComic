@@ -1,0 +1,46 @@
+﻿																Progress Document
+Keep track of what is going on with this project and what has to be done.
+
+----- 3/11/2021 -----
+
+Current Progress:
+	
+	ResourceGetter class is completed but still needs to be tested. It reads all of the files in the downloads directory
+	and copy those files into a folder into the local directory. So now should be able to read any of those files without having
+	to copy them. (keep this in mind!!!) Also know that ResourceGetter makes the temp directory available as a property, so the
+	driver class can give it to other classes to do work with.
+
+TODO:
+
+^^^	Start working on ResourceLoader and its children classes. These classes should have access to the temp directory that holds the 
+	copied versions of the cbr files, those files have open access as they are already copied into the local directory. So what
+	ResourceLoader and its children have to do is to simply open those files and process their contents for their purposes (hopefully).
+
+-----------------
+
+
+---- 3/16/2021 ----
+
+Ideation:
+	- Currently ResourceGetter() has made all comics available to ResourceLoader, so how to process the data?
+	A method to open the zip and an abstract method to process each entry based on the type of loader. Check if
+	abstract method can be called from within a non-abstract one.
+
+Current Progress:
+	Changed the direction of the app execution but have not yet fully implemented the changes. The new plan will involve copying the cbr files
+	to the temporary directory as mention in 3/11/2021 section, then simply passing the instance of that newly created StorageFolder to carry out
+	different tasks. 
+
+	The ComicMetadataLoader will receive the temporary directory created and then go through each cbr file to obtain its xml file. This has been 
+	for the most part implemented but not yet tested. Progress has reached the point where the entry corresponding to the xml file is obtained.
+	Now what remains is to create the ComicMetadata object by calling the corresponding class constructor. It should be noted, to do this, first
+	the ComicMetadata class needs to be completed.
+
+	ComicMetada class is under progress right now. It can currently create the xml StorageFolder object given the rar entry object (from SharpCompress).
+	Now for the application, the StorageFolder needs to be read using the System.XML library. Read the TODO for more.
+
+TODO:
+	Complete the xml reading of the ComicMetadata class. Need to look up the way to extract data from an xml file. Then need to implement
+	the means by which to extract data. 
+
+--------------
